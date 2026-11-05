@@ -1,0 +1,908 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Working title — Investigations, reviews & rabbit holes</title>
+
+<style>
+:root {
+  --ink:#20262b;
+  --muted:#697178;
+  --paper:#fbfbf8;
+  --line:#e5e6e1;
+  --orange:#e66a3c;
+  --sage:#a9b5ad;
+  --soft:#f0f1ed;
+  --white:#fff;
+  --max:1160px;
+}
+
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
+body {
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.55;
+}
+a {color:inherit;text-decoration:none}
+.wrap {width:min(var(--max),calc(100% - 44px));margin:auto}
+
+/* HEADER */
+
+header {
+  height:78px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  background:rgba(251,251,248,.94);
+  position:sticky;
+  top:0;
+  z-index:10;
+  backdrop-filter:blur(12px);
+}
+.nav {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+.brand {
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-weight:850;
+  letter-spacing:-.055em;
+  font-size:21px;
+}
+.brand-portrait {
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  object-fit:cover;
+  flex-shrink:0;
+}
+.mark {
+  width:37px;
+  height:37px;
+  border:2px solid var(--orange);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:var(--orange);
+  font-size:15px;
+  font-weight:900;
+  transform:rotate(-9deg);
+}
+.links {
+  display:flex;
+  gap:27px;
+  font-size:13px;
+  font-weight:650;
+  color:#515a60;
+}
+.links a:hover,.textlink:hover {color:var(--orange)}
+.menu {
+  display:none;
+  border:0;
+  background:none;
+  font-size:24px;
+}
+
+/* HERO */
+
+.hero {
+  padding:86px 0 65px;
+  display:grid;
+  grid-template-columns:1.12fr .88fr;
+  gap:60px;
+  align-items:center;
+}
+.eyebrow {
+  font-size:11px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--orange);
+  font-weight:800;
+}
+.hero h1 {
+  font-size:clamp(42px,6vw,76px);
+  letter-spacing:-.065em;
+  line-height:.99;
+  margin:17px 0 22px;
+  max-width:720px;
+}
+.hero h1 em {
+  font-style:normal;
+  color:var(--orange);
+}
+.intro {
+  font-size:18px;
+  color:#596168;
+  max-width:570px;
+  line-height:1.65;
+}
+.actions {
+  display:flex;
+  gap:12px;
+  margin-top:30px;
+  flex-wrap:wrap;
+}
+.btn {
+  padding:13px 19px;
+  border-radius:4px;
+  background:var(--ink);
+  color:white;
+  font-size:13px;
+  font-weight:750;
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+}
+.btn.alt {
+  background:transparent;
+  color:var(--ink);
+  border:1px solid #cfd2cc;
+}
+.btn:hover {
+  background:var(--orange);
+  border-color:var(--orange);
+  color:white;
+}
+
+/* HERO PORTRAIT */
+
+.hero-art {
+  min-height:390px;
+  background:#e9ece7;
+  border-radius:5px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:end;
+  padding:28px;
+}
+.hero-art:before {
+  content:"";
+  position:absolute;
+  width:310px;
+  height:310px;
+  border:30px solid var(--orange);
+  border-radius:50%;
+  right:-32px;
+  top:-50px;
+  opacity:.92;
+}
+.hero-art:after {
+  content:"";
+  position:absolute;
+  width:220px;
+  height:220px;
+  border:1px solid rgba(32,38,43,.16);
+  border-radius:50%;
+  right:45px;
+  top:45px;
+}
+.hero-portrait {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  z-index:1;
+}
+.art-note {
+  position:relative;
+  z-index:2;
+  background:var(--paper);
+  padding:13px 16px;
+  font-size:12px;
+  max-width:220px;
+  box-shadow:0 8px 30px #20262b12;
+}
+.art-note b {
+  display:block;
+  font-size:17px;
+  letter-spacing:-.04em;
+}
+
+/* GENERAL SECTIONS */
+
+.section {
+  padding:62px 0;
+  border-top:1px solid var(--line);
+}
+.section-head {
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:27px;
+}
+.section h2 {
+  font-size:clamp(28px,4vw,43px);
+  line-height:1.05;
+  letter-spacing:-.055em;
+  margin:8px 0 0;
+}
+.textlink {
+  font-size:13px;
+  font-weight:750;
+  white-space:nowrap;
+}
+
+/* FEATURED INVESTIGATION */
+
+.feature {
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  background:var(--soft);
+  min-height:360px;
+}
+.feature-img {
+  background:linear-gradient(135deg,#c7d0c8,#e4e5dc);
+  position:relative;
+  min-height:300px;
+  overflow:hidden;
+}
+.sun {
+  position:absolute;
+  width:250px;
+  height:250px;
+  border:24px solid var(--orange);
+  border-radius:50%;
+  right:-35px;
+  top:-60px;
+}
+.panel-lines {
+  position:absolute;
+  inset:35% -5% -20% 8%;
+  transform:skewY(-17deg);
+  background:
+    repeating-linear-gradient(90deg,#36434b 0 2px,transparent 2px 75px),
+    repeating-linear-gradient(0deg,#36434b 0 2px,transparent 2px 42px);
+  opacity:.55;
+}
+.feature-copy {
+  padding:42px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.tag {
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.13em;
+  color:var(--orange);
+  font-weight:850;
+}
+.feature h3 {
+  font-size:clamp(27px,3vw,39px);
+  letter-spacing:-.05em;
+  line-height:1.08;
+  margin:13px 0;
+}
+.feature p {
+  color:#626b70;
+  margin:0 0 22px;
+}
+.meta {
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+  color:#5d666b;
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+
+/* REVIEW CARDS */
+
+.cards {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.card {
+  border:1px solid var(--line);
+  background:white;
+}
+.card-visual {
+  height:190px;
+  background:var(--soft);
+  position:relative;
+  overflow:hidden;
+}
+.visual-fleece {background:linear-gradient(135deg,#d6d9d0,#aab5ad)}
+.visual-shoes {background:linear-gradient(135deg,#e9d9ca,#c7b6a8)}
+.visual-tech {background:linear-gradient(135deg,#d9e1e2,#aab8bc)}
+.shape {
+  position:absolute;
+  width:190px;
+  height:130px;
+  border-radius:50% 50% 18% 18%;
+  background:#424d4b;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-35%) rotate(-8deg);
+  box-shadow:inset -18px -7px #26302e55;
+}
+.visual-shoes .shape {
+  width:210px;
+  height:65px;
+  border-radius:65% 35% 25% 35%;
+  background:#e7e7df;
+  transform:translate(-50%,-20%) rotate(-12deg);
+  box-shadow:inset -4px -12px #9a9e99;
+}
+.visual-tech .shape {
+  width:105px;
+  height:150px;
+  border-radius:18px;
+  background:#333e42;
+  transform:translate(-50%,-50%);
+  box-shadow:inset 0 0 0 5px #59666a;
+}
+.card-copy {padding:20px}
+.card h3 {
+  font-size:21px;
+  line-height:1.13;
+  letter-spacing:-.04em;
+  margin:9px 0;
+}
+.card p {
+  color:var(--muted);
+  font-size:13px;
+  margin:0 0 18px;
+}
+
+/* OVERTHINKING SCALE */
+
+.scale-section {
+  background:var(--ink);
+  color:white;
+  padding:72px 0;
+}
+.scale-section .eyebrow {color:#f18a63}
+.scale-section h2 {
+  font-size:clamp(34px,5vw,56px);
+  letter-spacing:-.06em;
+  line-height:1;
+  margin:10px 0 15px;
+}
+.scale-intro {
+  color:#c3c9c8;
+  max-width:570px;
+}
+.scale-list {
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:7px;
+  margin-top:35px;
+}
+.level {
+  border:1px solid #ffffff28;
+  padding:15px 11px;
+  min-height:145px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.level:last-child {
+  background:var(--orange);
+  border-color:var(--orange);
+}
+.level small {
+  font-size:10px;
+  color:#aeb7b6;
+  font-weight:800;
+}
+.level:last-child small {color:#fff}
+.level b {
+  font-size:13px;
+  line-height:1.2;
+}
+.level span {
+  font-size:11px;
+  color:#c3c9c8;
+}
+.level:last-child span {color:white}
+
+/* ABOUT */
+
+.about {
+  display:grid;
+  grid-template-columns:.75fr 1.25fr;
+  gap:60px;
+  align-items:center;
+}
+.about-mark {
+  background:#e9ece7;
+  min-height:250px;
+  display:grid;
+  place-items:center;
+  position:relative;
+  overflow:hidden;
+}
+.about-portrait {
+  width:100%;
+  height:250px;
+  object-fit:contain;
+  object-position:center;
+  position:relative;
+  z-index:1;
+}
+.about-copy p {
+  color:#626b70;
+  max-width:640px;
+}
+.about-copy h2 {margin-bottom:18px}
+
+/* NEWSLETTER */
+
+.newsletter {
+  background:#eceee9;
+  padding:42px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:30px;
+}
+.newsletter h2 {
+  font-size:30px;
+  margin:0 0 7px;
+}
+.newsletter p {
+  margin:0;
+  color:#626b70;
+}
+.signup {
+  display:flex;
+  gap:8px;
+  min-width:min(390px,100%);
+}
+.signup input {
+  min-width:0;
+  flex:1;
+  border:1px solid #cbd0c9;
+  background:white;
+  padding:13px;
+  font:inherit;
+  font-size:13px;
+}
+.signup button {
+  border:0;
+  background:var(--ink);
+  color:white;
+  padding:0 17px;
+  font-weight:750;
+  cursor:pointer;
+}
+
+/* FOOTER */
+
+footer {
+  padding:35px 0 45px;
+  color:#747c7e;
+  font-size:12px;
+}
+.foot {
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:center;
+}
+.footlinks {
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+}
+
+/* ARTICLE PAGE */
+
+.article {
+  display:none;
+  padding:50px 0 80px;
+}
+.article.active {display:block}
+.home.hidden {display:none}
+.back {
+  display:inline-block;
+  margin-bottom:24px;
+  font-size:13px;
+  font-weight:750;
+}
+.article h1 {
+  font-size:clamp(38px,6vw,68px);
+  letter-spacing:-.06em;
+  line-height:1.02;
+  max-width:850px;
+}
+.article-lede {
+  font-size:19px;
+  color:var(--muted);
+  max-width:760px;
+}
+.article-hero {
+  height:320px;
+  background:linear-gradient(135deg,#c7d0c8,#e4e5dc);
+  margin:28px 0;
+  position:relative;
+  overflow:hidden;
+}
+.article-grid {
+  display:grid;
+  grid-template-columns:250px 1fr;
+  gap:55px;
+  margin-top:35px;
+}
+.stats {
+  background:var(--soft);
+  padding:22px;
+  height:max-content;
+}
+.stats h3 {
+  margin:0 0 14px;
+  font-size:13px;
+}
+.stat {
+  padding:12px 0;
+  border-top:1px solid #d9ddd6;
+}
+.stat b {
+  display:block;
+  font-size:23px;
+  letter-spacing:-.04em;
+}
+.stat span {
+  font-size:11px;
+  color:var(--muted);
+}
+.prose {max-width:700px}
+.prose h2 {
+  font-size:30px;
+  letter-spacing:-.05em;
+  margin:34px 0 8px;
+}
+.prose p {color:#586168}
+.verdict {
+  background:var(--soft);
+  padding:25px;
+  margin-top:35px;
+  border-left:4px solid var(--orange);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:800px) {
+  .hero {
+    grid-template-columns:1fr;
+    gap:28px;
+    padding-top:55px;
+  }
+  .hero-art {min-height:280px}
+  .feature {grid-template-columns:1fr}
+  .feature-img {min-height:230px}
+  .cards {grid-template-columns:1fr 1fr}
+  .scale-list {grid-template-columns:repeat(4,1fr)}
+  .about {grid-template-columns:1fr;gap:25px}
+  .about-mark {min-height:190px}
+  .about-portrait {height:190px}
+  .newsletter {
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .signup {width:100%}
+  .article-grid {
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+  .stats {
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:0 14px;
+  }
+  .stats h3 {grid-column:1/-1}
+}
+
+@media(max-width:560px) {
+  .wrap {width:min(100% - 30px,var(--max))}
+  .links {
+    display:none;
+    position:absolute;
+    top:77px;
+    left:0;
+    right:0;
+    background:var(--paper);
+    padding:20px 22px;
+    border-bottom:1px solid var(--line);
+    flex-direction:column;
+    gap:17px;
+  }
+  .links.open {display:flex}
+  .menu {display:block}
+  .hero h1 {font-size:47px}
+  .hero {padding:45px 0}
+  .section {padding:45px 0}
+  .section-head {
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .cards {grid-template-columns:1fr}
+  .card-visual {height:210px}
+  .scale-list {grid-template-columns:repeat(2,1fr)}
+  .level {min-height:115px}
+  .level:last-child {grid-column:span 2}
+  .feature-copy {padding:27px}
+  .newsletter {padding:27px}
+  .foot {
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .signup {flex-direction:column}
+  .signup button {padding:13px}
+  .article-hero {height:220px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#" onclick="showHome();return false">
+      <img class="brand-portrait" src="portrait.jpg" alt="My portrait">
+      <span>WORKING TITLE</span>
+    </a>
+
+    <nav class="links" id="links">
+      <a href="#investigations" onclick="showHome()">Investigations</a>
+      <a href="#reviews" onclick="showHome()">Reviews</a>
+      <a href="#scale" onclick="showHome()">The scale</a>
+      <a href="#about" onclick="showHome()">About</a>
+    </nav>
+
+    <button class="menu" aria-label="Open menu"
+      onclick="document.getElementById('links').classList.toggle('open')">☰</button>
+  </div>
+</header>
+
+<main id="home" class="home">
+
+  <!-- INTRODUCTION AND MAIN PORTRAIT -->
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow">Independent investigations · Reviews · Buying guides</div>
+      <h1>I went looking for an answer. <em>Things got a little out of hand.</em></h1>
+      <p class="intro">Products, gear, technology and everyday decisions. Researched far more thoroughly than is probably necessary, so you don't have to.</p>
+      <div class="actions">
+        <a class="btn" href="#investigations">Explore investigations <span>↗</span></a>
+        <a class="btn alt" href="#scale">Meet the scale</a>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <img class="hero-portrait" src="portrait.jpg" alt="Illustrated portrait">
+      <div class="art-note">
+        <b>Curiosity got the better of me.</b>
+        And then I made a spreadsheet.
+      </div>
+    </div>
+  </div>
+
+  <!-- INVESTIGATIONS -->
+  <section class="section" id="investigations">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">The latest rabbit hole</div>
+          <h2>Investigations</h2>
+        </div>
+        <a class="textlink" href="#investigations">All investigations ↗</a>
+      </div>
+
+      <div class="feature">
+        <div class="feature-img">
+          <div class="sun"></div>
+          <div class="panel-lines"></div>
+        </div>
+        <div class="feature-copy">
+          <div class="tag">Flagship investigation · Home & technology</div>
+          <h3>I spent £13,000 on solar. Was it actually worth it?</h3>
+          <p>18 panels. A Tesla Powerwall. One very large rabbit hole. The real costs, installation decisions, performance and whether the numbers stack up.</p>
+          <div class="meta">
+            <span>Level 7 · Well, that escalated</span>
+            <span>Ongoing project</span>
+          </div>
+          <div class="actions">
+            <a class="btn" href="#" onclick="showArticle();return false">Read the investigation ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">More things looked into</div>
+          <h2>Coming down the rabbit hole</h2>
+        </div>
+        <span class="textlink">A few likely suspects</span>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-visual visual-fleece"><div class="shape"></div></div>
+          <div class="card-copy">
+            <div class="tag">Gear & clothing</div>
+            <h3>How difficult can buying a fleece actually be?</h3>
+            <p>Warmth, fit, fabric, durability, brands and the details nobody asked for.</p>
+            <div class="meta">Potential Level 7</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-visual visual-shoes"><div class="shape"></div></div>
+          <div class="card-copy">
+            <div class="tag">Running & outdoors</div>
+            <h3>Finding the right running shoes</h3>
+            <p>What matters, what doesn't and how much you really need to spend.</p>
+            <div class="meta">Potential Level 6</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-visual visual-tech"><div class="shape"></div></div>
+          <div class="card-copy">
+            <div class="tag">Home & technology</div>
+            <h3>Making a smart home actually smart</h3>
+            <p>Useful automations, reliable kit and avoiding a house full of pointless gadgets.</p>
+            <div class="meta">Investigation planned</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERTHINKING SCALE -->
+  <section class="scale-section" id="scale">
+    <div class="wrap">
+      <div class="eyebrow">Our completely unofficial measure</div>
+      <h2>The Overthinking Scale.</h2>
+      <p class="scale-intro">Some people buy the first one they like. Others spend 50 hours researching the tensile strength of a jacket zip. This is a scale for that.</p>
+
+      <div class="scale-list">
+        <div class="level"><small>LEVEL 01</small><b>The impulse buy</b><span>5 minutes</span></div>
+        <div class="level"><small>LEVEL 02</small><b>A quick look</b><span>30 minutes</span></div>
+        <div class="level"><small>LEVEL 03</small><b>Getting interested</b><span>2 hours</span></div>
+        <div class="level"><small>LEVEL 04</small><b>A bit excessive</b><span>5 hours</span></div>
+        <div class="level"><small>LEVEL 05</small><b>The rabbit hole</b><span>10+ hours</span></div>
+        <div class="level"><small>LEVEL 06</small><b>This is getting silly</b><span>25+ hours</span></div>
+        <div class="level"><small>LEVEL 07</small><b>Well, that escalated.</b><span>50+ hours</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT: NOW USES YOUR PORTRAIT -->
+  <section class="section" id="about">
+    <div class="wrap about">
+      <div class="about-mark">
+        <img class="about-portrait" src="portrait.jpg" alt="Illustrated portrait">
+      </div>
+
+      <div class="about-copy">
+        <div class="eyebrow">A little about the person behind it</div>
+        <h2>I'm probably taking this a bit too far.</h2>
+        <p>You know when you just need to buy something? A fleece. A pair of running shoes. A new gadget. Most people have a quick look and get on with their lives. I tend to discover seventeen things I hadn't considered, read obscure forum discussions and occasionally make a spreadsheet.</p>
+        <p>This is a place for those investigations. No pretend expertise, no hype — just a proper look, honest testing where possible and a useful answer at the end.</p>
+        <a class="textlink" href="#about">More about the approach ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="section">
+    <div class="wrap">
+      <div class="newsletter">
+        <div>
+          <h2>Join me down the rabbit hole.</h2>
+          <p>Occasional investigations, useful findings and the odd purchase taken too far.</p>
+        </div>
+        <form class="signup" onsubmit="event.preventDefault();this.querySelector('button').textContent='Thanks — signup demo';">
+          <input type="email" placeholder="Your email address" aria-label="Your email address" required>
+          <button type="submit">Keep me posted ↗</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- SOLAR INVESTIGATION ARTICLE -->
+<main id="article" class="article">
+  <div class="wrap">
+    <a class="back" href="#" onclick="showHome();return false">← Back to homepage</a>
+
+    <div class="eyebrow">Investigation · Home & technology</div>
+    <h1>I spent £13,000 on solar. Was it actually worth it?</h1>
+    <p class="article-lede">18 panels, a Tesla Powerwall 3 and a lot of questions. This is the ongoing story of what I bought, why I bought it and whether the numbers make sense.</p>
+
+    <div class="article-hero">
+      <div class="sun"></div>
+      <div class="panel-lines"></div>
+    </div>
+
+    <div class="meta">
+      <span>Level 7 · Well, that escalated</span>
+      <span>Ongoing project</span>
+      <span>Updated as real data arrives</span>
+    </div>
+
+    <div class="article-grid">
+      <aside class="stats">
+        <h3>THE INVESTIGATION AT A GLANCE</h3>
+        <div class="stat"><b>£13,000</b><span>System cost</span></div>
+        <div class="stat"><b>18 × 490W</b><span>New solar panels</span></div>
+        <div class="stat"><b>13.5 kWh</b><span>Powerwall 3 battery capacity</span></div>
+        <div class="stat"><b>Level 7</b><span>Overthinking Scale</span></div>
+        <p style="font-size:11px;color:#697178">Figures reflect the project details currently known. Performance and savings will be added from actual readings.</p>
+      </aside>
+
+      <div class="prose">
+        <h2>It started with an electricity bill.</h2>
+        <p>Jeffs Bay is a holiday let, so electricity use is not quite like a normal home. Guest changeovers, occupancy, heating and hot water all affect the picture. There were already four solar panels, but I wanted to understand whether a much larger system with battery storage could make a meaningful difference.</p>
+
+        <h2>Why spend £13,000?</h2>
+        <p>The new installation includes 18 × 490W panels, a Tesla Powerwall 3, Gateway, EV Wall Connector and an Eddi energy diverter. The decision wasn't just about generating electricity: it was about storing it, using more of it on site and understanding export options.</p>
+
+        <h2>The questions that matter</h2>
+        <p>How much electricity will the system really generate? How often will the battery fill? What will be imported and exported? How much will the tariff change the result? And what happens when the house is full of guests?</p>
+
+        <h2>What I'm tracking</h2>
+        <p>I'll use actual generation, import, export, battery behaviour, bills and tariff data. Forecasts will be labelled as forecasts; measured results will be labelled as measured results. No invented payback claims.</p>
+
+        <div class="verdict">
+          <div class="tag">The verdict — not yet</div>
+          <h2 style="margin-top:8px">Let's get some real-world data first.</h2>
+          <p>This is an ongoing investigation. The honest answer will come after enough time has passed to see how the system performs through different seasons and occupancy levels.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>© 2026 Working title. Independent investigations, honest conclusions.</div>
+    <div class="footlinks">
+      <a href="#about">About</a>
+      <a href="#scale">How we investigate</a>
+      <a href="#">Affiliate disclosure</a>
+      <a href="#">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function showArticle() {
+  document.getElementById('home').classList.add('hidden');
+  document.getElementById('article').classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function showHome() {
+  document.getElementById('article').classList.remove('active');
+  document.getElementById('home').classList.remove('hidden');
+  document.getElementById('links').classList.remove('open');
+}
+</script>
+
+</body>
+</html>
