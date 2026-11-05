@@ -1,0 +1,520 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home & Living | Working Title</title>
+
+<style>
+:root {
+  --ink:#20262b;
+  --muted:#697178;
+  --paper:#fbfbf8;
+  --line:#e5e6e1;
+  --orange:#e66a3c;
+  --soft:#f0f1ed;
+  --max:1160px;
+}
+
+* {box-sizing:border-box}
+
+html {scroll-behavior:smooth}
+
+body {
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.55;
+}
+
+a {color:inherit;text-decoration:none}
+
+.wrap {
+  width:min(var(--max),calc(100% - 44px));
+  margin:auto;
+}
+
+/* HEADER */
+
+header {
+  height:78px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  background:rgba(251,251,248,.94);
+  position:sticky;
+  top:0;
+  z-index:10;
+  backdrop-filter:blur(12px);
+}
+
+.nav {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-weight:850;
+  letter-spacing:-.055em;
+  font-size:21px;
+}
+
+.brand-portrait {
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  object-fit:cover;
+  flex-shrink:0;
+}
+
+.links {
+  display:flex;
+  gap:27px;
+  font-size:13px;
+  font-weight:650;
+  color:#515a60;
+}
+
+.links a:hover {
+  color:var(--orange);
+}
+
+.menu {
+  display:none;
+  border:0;
+  background:none;
+  font-size:24px;
+  color:var(--ink);
+  cursor:pointer;
+}
+
+/* PAGE INTRODUCTION */
+
+.page-intro {
+  padding:55px 0 45px;
+}
+
+.back {
+  display:inline-block;
+  margin-bottom:35px;
+  font-size:13px;
+  font-weight:750;
+  color:var(--muted);
+}
+
+.back:hover {
+  color:var(--orange);
+}
+
+.eyebrow {
+  font-size:11px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--orange);
+  font-weight:800;
+}
+
+h1 {
+  font-size:clamp(42px,6vw,76px);
+  letter-spacing:-.065em;
+  line-height:.99;
+  margin:17px 0 22px;
+}
+
+.intro {
+  max-width:700px;
+  color:#596168;
+  font-size:18px;
+  line-height:1.65;
+  margin:0;
+}
+
+/* CONTENT SECTIONS */
+
+section {
+  margin-top:55px;
+}
+
+.section-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  border-bottom:1px solid var(--line);
+  padding-bottom:14px;
+  margin-bottom:24px;
+}
+
+.section-heading h2 {
+  margin:0;
+  font-size:clamp(25px,3vw,34px);
+  letter-spacing:-.05em;
+  line-height:1.1;
+}
+
+/* FEATURED INVESTIGATION */
+
+.featured {
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  background:var(--soft);
+  min-height:300px;
+}
+
+.featured-visual {
+  background:linear-gradient(135deg,#c7d0c8,#e4e5dc);
+  position:relative;
+  min-height:260px;
+  overflow:hidden;
+}
+
+.sun {
+  position:absolute;
+  width:250px;
+  height:250px;
+  border:24px solid var(--orange);
+  border-radius:50%;
+  right:-35px;
+  top:-60px;
+}
+
+.panel-lines {
+  position:absolute;
+  inset:35% -5% -20% 8%;
+  transform:skewY(-17deg);
+  background:
+    repeating-linear-gradient(90deg,#36434b 0 2px,transparent 2px 75px),
+    repeating-linear-gradient(0deg,#36434b 0 2px,transparent 2px 42px);
+  opacity:.55;
+}
+
+.featured-copy {
+  padding:35px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+}
+
+.tag {
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.13em;
+  color:var(--orange);
+  font-weight:850;
+}
+
+.featured h3 {
+  font-size:clamp(27px,3vw,38px);
+  letter-spacing:-.05em;
+  line-height:1.08;
+  margin:13px 0;
+}
+
+.featured p {
+  color:#626b70;
+  line-height:1.6;
+  margin:0 0 18px;
+}
+
+.meta {
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+  color:#5d666b;
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+
+.btn {
+  padding:13px 19px;
+  border-radius:4px;
+  background:var(--ink);
+  color:white;
+  font-size:13px;
+  font-weight:750;
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  margin-top:20px;
+}
+
+.btn:hover {
+  background:var(--orange);
+}
+
+/* EMPTY CONTENT AREAS */
+
+.empty {
+  padding:22px 0;
+  color:var(--muted);
+}
+
+.empty p {
+  color:var(--muted);
+  line-height:1.6;
+  margin:0;
+}
+
+/* FOOTER */
+
+footer {
+  padding:35px 0 45px;
+  color:#747c7e;
+  font-size:12px;
+  border-top:1px solid var(--line);
+  margin-top:40px;
+}
+
+.foot {
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:center;
+}
+
+.footlinks {
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+}
+
+.footlinks a:hover {
+  color:var(--orange);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:800px) {
+  .featured {
+    grid-template-columns:1fr;
+  }
+
+  .featured-visual {
+    min-height:230px;
+  }
+}
+
+@media(max-width:560px) {
+  .wrap {
+    width:min(100% - 30px,var(--max));
+  }
+
+  .links {
+    display:none;
+    position:absolute;
+    top:77px;
+    left:0;
+    right:0;
+    background:var(--paper);
+    padding:20px 22px;
+    border-bottom:1px solid var(--line);
+    flex-direction:column;
+    gap:17px;
+  }
+
+  .links.open {
+    display:flex;
+  }
+
+  .menu {
+    display:block;
+  }
+
+  .page-intro {
+    padding:40px 0 30px;
+  }
+
+  h1 {
+    font-size:47px;
+  }
+
+  .intro {
+    font-size:16px;
+  }
+
+  section {
+    margin-top:42px;
+  }
+
+  .featured-copy {
+    padding:27px;
+  }
+
+  .featured h3 {
+    font-size:27px;
+  }
+
+  .foot {
+    align-items:flex-start;
+    flex-direction:column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+  <div class="wrap nav">
+
+    <a class="brand" href="index.html">
+      <img class="brand-portrait" src="portrait.jpg" alt="My portrait">
+      <span>WORKING TITLE</span>
+    </a>
+
+    <nav class="links" id="links">
+      <a href="categories.html">Categories</a>
+      <a href="index.html#investigations">Investigations</a>
+      <a href="index.html#reviews">Reviews</a>
+      <a href="index.html#about">About</a>
+    </nav>
+
+    <button class="menu" aria-label="Open menu"
+      onclick="document.getElementById('links').classList.toggle('open')">☰</button>
+
+  </div>
+</header>
+
+<!-- PAGE CONTENT -->
+
+<main class="wrap">
+
+  <div class="page-intro">
+
+    <a class="back" href="categories.html">← All categories</a>
+
+    <div class="eyebrow">Explore the category</div>
+
+    <h1>Home & Living</h1>
+
+    <p class="intro">
+      The products, technology and ideas that make a house work better. From energy and smart home technology to the things we buy for everyday life. And, of course, whether any of it is actually worth the money.
+    </p>
+
+  </div>
+
+  <!-- FEATURED INVESTIGATION -->
+
+  <section>
+    <div class="section-heading">
+      <h2>Featured investigation</h2>
+    </div>
+
+    <div class="featured">
+
+      <div class="featured-visual">
+        <div class="sun"></div>
+        <div class="panel-lines"></div>
+      </div>
+
+      <div class="featured-copy">
+
+        <div class="tag">Solar & Energy · Investigation</div>
+
+        <h3>I spent £13,000 on solar. Was it actually worth it?</h3>
+
+        <p>
+          18 panels, a Tesla Powerwall 3 and a lot of questions. An ongoing real-world investigation into the costs, performance and savings.
+        </p>
+
+        <div class="meta">
+          <span>Level 7 · Well, that escalated</span>
+          <span>Ongoing project</span>
+        </div>
+
+        <a class="btn" href="index.html#article">
+          Read the investigation ↗
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LATEST ARTICLES -->
+
+  <section>
+    <div class="section-heading">
+      <h2>Latest articles</h2>
+    </div>
+
+    <div class="empty">
+      <p>New investigations, experiments and articles will appear here.</p>
+    </div>
+  </section>
+
+  <!-- REVIEWS AND BUYING GUIDES -->
+
+  <section>
+    <div class="section-heading">
+      <h2>Reviews & buying guides</h2>
+    </div>
+
+    <div class="empty">
+      <p>Independent product reviews, comparisons and practical buying advice.</p>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+
+  <section>
+    <div class="section-heading">
+      <h2>Videos</h2>
+    </div>
+
+    <div class="empty">
+      <p>Video reviews, demonstrations and investigations will appear here.</p>
+    </div>
+  </section>
+
+  <!-- ALL CONTENT -->
+
+  <section>
+    <div class="section-heading">
+      <h2>All Home & Living content</h2>
+    </div>
+
+    <div class="empty">
+      <p>Browse the complete collection of articles and investigations in this category.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="wrap foot">
+
+    <div>© 2026 Working title. Independent investigations, honest conclusions.</div>
+
+    <div class="footlinks">
+      <a href="index.html#about">About</a>
+      <a href="index.html#scale">How we investigate</a>
+      <a href="#">Affiliate disclosure</a>
+      <a href="#">Privacy</a>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('links').classList.remove('open');
+  });
+});
+</script>
+
+</body>
+</html>

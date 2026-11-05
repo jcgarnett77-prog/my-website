@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gear & Clothing | Working Title</title>
+
+<style>
+:root {
+  --ink:#20262b;
+  --muted:#697178;
+  --paper:#fbfbf8;
+  --line:#e5e6e1;
+  --orange:#e66a3c;
+  --soft:#f0f1ed;
+  --white:#fff;
+  --max:1160px;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+a { color:inherit; text-decoration:none; }
+.wrap { width:min(var(--max),calc(100% - 48px)); margin:auto; }
+
+header {
+  height:78px;
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(251,251,248,.94);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.nav {
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:21px;
+  font-weight:850;
+  letter-spacing:-.055em;
+}
+.brand img { width:42px; height:42px; border-radius:50%; object-fit:cover; }
+.links { display:flex; align-items:center; gap:27px; font-size:13px; font-weight:650; color:#515a60; }
+.links a:hover,.links a.active { color:var(--orange); }
+.menu-toggle { display:none; border:0; background:none; font-size:25px; cursor:pointer; }
+
+.intro { padding:62px 0 35px; }
+.eyebrow {
+  color:var(--orange);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  margin-bottom:13px;
+}
+h1 {
+  font-size:clamp(38px,5vw,58px);
+  line-height:1.04;
+  letter-spacing:-.055em;
+  margin:0 0 17px;
+}
+.intro p {
+  max-width:680px;
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.7;
+  margin:0;
+}
+
+.feature {
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:13px;
+  overflow:hidden;
+  margin-bottom:65px;
+}
+.feature-image { min-height:350px; background:var(--soft); }
+.feature-image img { width:100%; height:100%; object-fit:cover; display:block; }
+.feature-copy {
+  padding:38px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+}
+.feature-copy h2 {
+  font-size:32px;
+  line-height:1.12;
+  letter-spacing:-.045em;
+  margin:10px 0 14px;
+}
+.feature-copy p {
+  color:var(--muted);
+  line-height:1.7;
+  font-size:14px;
+  margin:0 0 23px;
+}
+.btn {
+  display:inline-block;
+  background:var(--ink);
+  color:white;
+  padding:13px 19px;
+  border-radius:5px;
+  font-size:13px;
+  font-weight:700;
+  transition:background .2s;
+}
+.btn:hover { background:var(--orange); }
+
+.section-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:20px;
+  border-bottom:1px solid var(--line);
+  padding-bottom:14px;
+  margin-bottom:24px;
+}
+.section-heading h2 {
+  font-size:25px;
+  letter-spacing:-.04em;
+  margin:0;
+}
+.section-heading span { color:var(--muted); font-size:12px; }
+
+.placeholder-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:22px;
+  margin-bottom:65px;
+}
+.placeholder-card {
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:10px;
+  overflow:hidden;
+}
+.placeholder-image {
+  aspect-ratio:16/10;
+  background:var(--soft);
+  overflow:hidden;
+}
+.placeholder-image img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.placeholder-copy { padding:19px; }
+.tag {
+  color:var(--orange);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.placeholder-copy h3 {
+  font-size:19px;
+  letter-spacing:-.035em;
+  margin:9px 0;
+}
+.placeholder-copy p {
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+  margin:0;
+}
+
+.back-link {
+  display:inline-block;
+  color:var(--muted);
+  font-size:13px;
+  margin:0 0 55px;
+}
+.back-link:hover { color:var(--orange); }
+
+footer {
+  border-top:1px solid var(--line);
+  padding:30px 0;
+  color:var(--muted);
+  font-size:12px;
+}
+.footer-inner { display:flex; justify-content:space-between; gap:20px; }
+
+@media(max-width:800px) {
+  .feature { grid-template-columns:1fr; }
+  .feature-image { min-height:280px; }
+  .feature-copy { padding:27px; }
+  .placeholder-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:560px) {
+  header { height:70px; }
+  .wrap { width:min(100% - 32px,var(--max)); }
+  .brand { font-size:19px; }
+  .brand img { width:38px; height:38px; }
+  .menu-toggle { display:block; }
+  .links {
+    display:none;
+    position:absolute;
+    top:69px;
+    left:0;
+    right:0;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    padding:20px 24px;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:19px;
+  }
+  .links.open { display:flex; }
+  .intro { padding:43px 0 27px; }
+  .feature { margin-bottom:50px; }
+  .feature-image { min-height:220px; }
+  .feature-copy h2 { font-size:27px; }
+  .placeholder-grid { grid-template-columns:1fr; gap:17px; }
+  .section-heading h2 { font-size:22px; }
+  .footer-inner { flex-direction:column; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand">
+      <img src="portrait.jpg" alt="Working Title">
+      WORKING TITLE
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+    <nav class="links" id="links">
+      <a href="categories.html">Categories</a>
+      <a href="index.html#article">Investigations</a>
+      <a href="index.html#reviews">Reviews</a>
+      <a href="index.html#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="intro">
+    <div class="eyebrow">Explore the category</div>
+    <h1>Gear & Clothing</h1>
+    <p>
+      Outdoor clothing, footwear and equipment.
+      The things we wear, carry and rely on, and whether
+      they're actually worth the money. From technical
+      kit to everyday essentials, we'll look beyond the
+      marketing and work out what really performs.
+    </p>
+  </section>
+
+  <section class="feature">
+    <div class="feature-image">
+      <img src="category-gear.jpg" alt="Outdoor clothing, footwear and equipment">
+    </div>
+    <div class="feature-copy">
+      <div class="eyebrow">Featured investigation</div>
+      <h2>Does expensive outdoor gear actually make a difference?</h2>
+      <p>
+        The claims, the technology and the price tags.
+        A closer look at the kit we're encouraged to buy,
+        what makes a genuine difference and where you
+        might be paying for a label.
+      </p>
+      <span class="tag">Investigation coming soon</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-heading">
+      <h2>Latest articles</h2>
+      <span>New stories and investigations</span>
+    </div>
+    <div class="placeholder-grid">
+      <article class="placeholder-card">
+        <div class="placeholder-image">
+          <img src="category-gear.jpg" alt="Outdoor clothing">
+        </div>
+        <div class="placeholder-copy">
+          <div class="tag">Investigation</div>
+          <h3>What are you really paying for?</h3>
+          <p>A closer look at the difference between premium outdoor kit and the alternatives.</p>
+        </div>
+      </article>
+      <article class="placeholder-card">
+        <div class="placeholder-image">
+          <img src="category-gear.jpg" alt="Outdoor footwear">
+        </div>
+        <div class="placeholder-copy">
+          <div class="tag">Review</div>
+          <h3>Putting the kit to the test</h3>
+          <p>Real-world use, honest opinions and the things product descriptions leave out.</p>
+        </div>
+      </article>
+      <article class="placeholder-card">
+        <div class="placeholder-image">
+          <img src="category-gear.jpg" alt="Outdoor equipment">
+        </div>
+        <div class="placeholder-copy">
+          <div class="tag">Buying guide</div>
+          <h3>Buy once, buy well?</h3>
+          <p>Where it makes sense to spend more, and where it really doesn't.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-heading">
+      <h2>Reviews & buying guides</h2>
+      <span>Practical advice before you buy</span>
+    </div>
+    <div class="placeholder-grid">
+      <article class="placeholder-card">
+        <div class="placeholder-image">
+          <img src="category-gear.jpg" alt="Outdoor clothing">
+        </div>
+        <div class="placeholder-copy">
+          <div class="tag">Reviews</div>
+          <h3>Independent product reviews</h3>
+          <p>What works, what doesn't and whether it's worth the asking price.</p>
+        </div>
+      </article>
+      <article class="placeholder-card">
+        <div class="placeholder-image">
+          <img src="category-gear.jpg" alt="Outdoor equipment">
+        </div>
+        <div class="placeholder-copy">
+          <div class="tag">Buying guides</div>
+          <h3>Before you spend your money</h3>
+          <p>Research and comparisons to help make the right choice.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <a href="categories.html" class="back-link">← Back to all categories</a>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>WORKING TITLE</span>
+    <span>Independent thinking. Excessive research.</span>
+  </div>
+</footer>
+
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const links = document.getElementById('links');
+
+menuToggle.addEventListener('click', () => {
+  links.classList.toggle('open');
+});
+
+links.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    links.classList.remove('open');
+  });
+});
+</script>
+
+</body>
+</html>

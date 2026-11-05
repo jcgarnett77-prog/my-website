@@ -659,12 +659,12 @@ footer {
       <span>WORKING TITLE</span>
     </a>
 
-    <nav class="links" id="links">
-      <a href="#investigations" onclick="showHome()">Investigations</a>
-      <a href="#reviews" onclick="showHome()">Reviews</a>
-      <a href="#scale" onclick="showHome()">The scale</a>
-      <a href="#about" onclick="showHome()">About</a>
-    </nav>
+<nav class="links" id="links">
+  <a href="categories.html">Categories</a>
+  <a href="#investigations">Investigations</a>
+  <a href="#reviews">Reviews</a>
+  <a href="#about">About</a>
+</nav>
 
     <button class="menu" aria-label="Open menu"
       onclick="document.getElementById('links').classList.toggle('open')">☰</button>
@@ -682,6 +682,7 @@ footer {
       <div class="actions">
         <a class="btn" href="#investigations">Explore investigations <span>↗</span></a>
         <a class="btn alt" href="#scale">Meet the scale</a>
+        <a class="btn alt" href="categories.html">Browse categories ↗</a>
       </div>
     </div>
 
@@ -711,7 +712,7 @@ footer {
           <div class="panel-lines"></div>
         </div>
         <div class="feature-copy">
-          <div class="tag">Flagship investigation · Home & technology</div>
+          <div class="tag">Flagship investigation · <a href="home-living.html">Home & Living</a></div>
           <h3>I spent £13,000 on solar. Was it actually worth it?</h3>
           <p>18 panels. A Tesla Powerwall. One very large rabbit hole. The real costs, installation decisions, performance and whether the numbers stack up.</p>
           <div class="meta">
@@ -741,7 +742,7 @@ footer {
         <article class="card">
           <div class="card-visual visual-fleece"><div class="shape"></div></div>
           <div class="card-copy">
-            <div class="tag">Gear & clothing</div>
+            <div class="tag"><a href="gear-clothing.html">Gear & Clothing</a></div>
             <h3>How difficult can buying a fleece actually be?</h3>
             <p>Warmth, fit, fabric, durability, brands and the details nobody asked for.</p>
             <div class="meta">Potential Level 7</div>
@@ -751,7 +752,7 @@ footer {
         <article class="card">
           <div class="card-visual visual-shoes"><div class="shape"></div></div>
           <div class="card-copy">
-            <div class="tag">Running & outdoors</div>
+            <div class="tag"><a href="fitness-wellbeing.html">Fitness & Wellbeing</a></div>
             <h3>Finding the right running shoes</h3>
             <p>What matters, what doesn't and how much you really need to spend.</p>
             <div class="meta">Potential Level 6</div>
@@ -761,7 +762,7 @@ footer {
         <article class="card">
           <div class="card-visual visual-tech"><div class="shape"></div></div>
           <div class="card-copy">
-            <div class="tag">Home & technology</div>
+            <div class="tag"><a href="home-living.html">Home & Living</a></div>
             <h3>Making a smart home actually smart</h3>
             <p>Useful automations, reliable kit and avoiding a house full of pointless gadgets.</p>
             <div class="meta">Investigation planned</div>
@@ -824,6 +825,9 @@ footer {
   </section>
 
 </main>
+
+
+
 
 <!-- SOLAR INVESTIGATION ARTICLE -->
 <main id="article" class="article">
@@ -893,14 +897,19 @@ footer {
 <script>
 function showArticle() {
   document.getElementById('home').classList.add('hidden');
+  document.getElementById('categories').classList.remove('active');
   document.getElementById('article').classList.add('active');
+  document.getElementById('links').classList.remove('open');
   window.scrollTo(0,0);
 }
 
+
 function showHome() {
   document.getElementById('article').classList.remove('active');
+  document.getElementById('categories').classList.remove('active');
   document.getElementById('home').classList.remove('hidden');
   document.getElementById('links').classList.remove('open');
+  window.scrollTo(0,0);
 }
 </script>
 

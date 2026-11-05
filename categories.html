@@ -1,0 +1,464 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Categories | Working Title</title>
+
+<style>
+:root {
+  --ink:#20262b;
+  --muted:#697178;
+  --paper:#fbfbf8;
+  --line:#e5e6e1;
+  --orange:#e66a3c;
+  --soft:#f0f1ed;
+  --white:#fff;
+  --max:1160px;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,
+  BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+a { color:inherit; text-decoration:none; }
+
+.wrap {
+  width:min(var(--max),calc(100% - 48px));
+  margin:auto;
+}
+
+/* HEADER */
+
+header {
+  height:78px;
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(251,251,248,.94);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+
+.nav {
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:21px;
+  font-weight:850;
+  letter-spacing:-.055em;
+}
+
+.brand img {
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.links {
+  display:flex;
+  align-items:center;
+  gap:27px;
+  font-size:13px;
+  font-weight:650;
+  color:#515a60;
+}
+
+.links a:hover,
+.links a.active {
+  color:var(--orange);
+}
+
+.menu-toggle {
+  display:none;
+  border:0;
+  background:none;
+  font-size:25px;
+  cursor:pointer;
+}
+
+/* INTRO */
+
+.intro {
+  padding:66px 0 38px;
+}
+
+.eyebrow {
+  color:var(--orange);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  margin-bottom:13px;
+}
+
+h1 {
+  font-size:clamp(38px,5vw,58px);
+  line-height:1.04;
+  letter-spacing:-.055em;
+  margin:0 0 17px;
+}
+
+.intro p {
+  max-width:620px;
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.7;
+  margin:0;
+}
+
+/* CATEGORY GRID */
+
+.categories {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:24px;
+  padding-bottom:85px;
+}
+
+.category {
+  display:block;
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:13px;
+  overflow:hidden;
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+
+.category:hover {
+  transform:translateY(-4px);
+  box-shadow:0 12px 30px rgba(32,38,43,.09);
+}
+
+.category.featured {
+  grid-column:1 / -1;
+}
+
+.image {
+  position:relative;
+  overflow:hidden;
+  background:var(--soft);
+  aspect-ratio:5 / 3;
+}
+
+.featured .image {
+  aspect-ratio:16 / 6;
+}
+
+.image img {
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .4s ease;
+}
+
+.category:hover .image img {
+  transform:scale(1.035);
+}
+
+.category-copy {
+  padding:22px 24px 24px;
+}
+
+.category-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+
+.category h2 {
+  margin:0;
+  font-size:23px;
+  letter-spacing:-.045em;
+}
+
+.featured h2 {
+  font-size:29px;
+}
+
+.arrow {
+  color:var(--orange);
+  font-size:23px;
+  transition:transform .2s ease;
+}
+
+.category:hover .arrow {
+  transform:translateX(5px);
+}
+
+.category p {
+  margin:9px 0 0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.65;
+  max-width:570px;
+}
+
+/* FOOTER */
+
+footer {
+  border-top:1px solid var(--line);
+  padding:30px 0;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.footer-inner {
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px) {
+  .wrap {
+    width:min(100% - 32px,var(--max));
+  }
+
+  .intro {
+    padding:45px 0 28px;
+  }
+
+  .categories {
+    gap:15px;
+  }
+
+  .category-copy {
+    padding:16px;
+  }
+
+  .category h2 {
+    font-size:19px;
+  }
+
+  .featured h2 {
+    font-size:24px;
+  }
+
+  .featured .image {
+    aspect-ratio:5 / 3;
+  }
+}
+
+@media(max-width:560px) {
+  header { height:70px; }
+
+  .brand { font-size:19px; }
+
+  .brand img {
+    width:38px;
+    height:38px;
+  }
+
+  .menu-toggle { display:block; }
+
+  .links {
+    display:none;
+    position:absolute;
+    top:69px;
+    left:0;
+    right:0;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    padding:20px 24px;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:19px;
+  }
+
+  .links.open { display:flex; }
+
+  .categories {
+    grid-template-columns:1fr;
+    gap:18px;
+    padding-bottom:55px;
+  }
+
+  .category.featured {
+    grid-column:auto;
+  }
+
+  .featured .image,
+  .image {
+    aspect-ratio:16 / 9;
+  }
+
+  .footer-inner {
+    flex-direction:column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand">
+      <img src="portrait.jpg" alt="Working Title">
+      WORKING TITLE
+    </a>
+
+    <button class="menu-toggle" id="menuToggle"
+      aria-label="Open menu">☰</button>
+
+    <nav class="links" id="links">
+      <a href="categories.html" class="active">Categories</a>
+      <a href="index.html#article">Investigations</a>
+      <a href="index.html#reviews">Reviews</a>
+      <a href="index.html#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="intro">
+    <div class="eyebrow">Explore the site</div>
+    <h1>What are you<br>interested in?</h1>
+    <p>
+      From the things we buy to the places we go.
+      A lot of research, a bit of overthinking,
+      and hopefully some genuinely useful conclusions.
+    </p>
+  </section>
+
+  <section class="categories">
+
+    <a href="home-living.html"
+       class="category featured">
+      <div class="image">
+        <img src="category-home.jpg"
+             alt="Modern home interior">
+      </div>
+      <div class="category-copy">
+        <div class="category-top">
+          <h2>Home & Living</h2>
+          <span class="arrow">↗</span>
+        </div>
+        <p>
+          The products, technology and ideas that make a house
+          work better. From energy and smart home technology
+          to the things we buy for everyday life. And, of course,
+          whether any of it is actually worth the money.
+        </p>
+      </div>
+    </a>
+
+    <a href="gear-clothing.html" class="category">
+      <div class="image">
+        <img src="category-gear.jpg"
+             alt="Outdoor clothing and equipment">
+      </div>
+      <div class="category-copy">
+        <div class="category-top">
+          <h2>Gear & Clothing</h2>
+          <span class="arrow">↗</span>
+        </div>
+        <p>
+          Outdoor clothing, footwear and equipment.
+          The things we wear, carry and rely on,
+          and whether they're actually worth the money.
+        </p>
+      </div>
+    </a>
+
+    <a href="fitness-wellbeing.html" class="category">
+      <div class="image">
+        <img src="category-fitness.jpg"
+             alt="Fitness and wearable technology">
+      </div>
+      <div class="category-copy">
+        <div class="category-top">
+          <h2>Fitness & Wellbeing</h2>
+          <span class="arrow">↗</span>
+        </div>
+        <p>
+          Fitness products, wearable technology, health metrics
+          and personal experiments. Understanding the numbers
+          and working out what genuinely makes a difference.
+        </p>
+      </div>
+    </a>
+
+    <a href="out-about.html" class="category">
+      <div class="image">
+        <img src="category-out.jpg"
+             alt="Campervan and outdoor adventure">
+      </div>
+      <div class="category-copy">
+        <div class="category-top">
+          <h2>Out & About</h2>
+          <span class="arrow">↗</span>
+        </div>
+        <p>
+          Travel, van life, camping and adventure.
+          The places we go, the things we take
+          and the experiences along the way.
+        </p>
+      </div>
+    </a>
+
+    <a href="tech-gadgets.html" class="category">
+      <div class="image">
+        <img src="category-tech.jpg"
+             alt="Technology and gadgets">
+      </div>
+      <div class="category-copy">
+        <div class="category-top">
+          <h2>Tech & Gadgets</h2>
+          <span class="arrow">↗</span>
+        </div>
+        <p>
+          Clever technology, useful gadgets and new ideas.
+          What's genuinely useful, what's overcomplicated
+          and what's just clever marketing?
+        </p>
+      </div>
+    </a>
+
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>WORKING TITLE</span>
+    <span>Independent thinking. Excessive research.</span>
+  </div>
+</footer>
+
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const links = document.getElementById('links');
+
+menuToggle.addEventListener('click', () => {
+  links.classList.toggle('open');
+});
+
+links.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    links.classList.remove('open');
+  });
+});
+</script>
+
+</body>
+</html>
